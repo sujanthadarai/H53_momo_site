@@ -1,0 +1,31 @@
+{% extends 'profile_dashboard.html' %}
+{% load static %}
+
+{% block title %}My Profile{% endblock %}
+{% block page_title %}Profile{% endblock %}
+{% block page_subtitle %}Manage your account information{% endblock %}
+
+{% block maincontent %}
+<h2 class="text-center alert alert-info"> My Order List</h2>
+
+<div class="container">
+    <div class="row">
+        {% for order in myorder %}
+          
+      
+        <div class="col-4 border border-2 border-success">
+            <p>Order Id : {{order.id}}</p>
+            <p>Transaction UUID : {{order.transcation_uuid}}</p>
+           <ul>
+             {% for i in order.items.all %}
+              <li>Momo Name : {{i.momo.name}}</li>
+              <li>Momo Quantity : {{i.quantity}}</li>
+              <li>Momo Price : Rs.{{i.price}}</li>
+            {% endfor %}
+           </ul>
+        </div>
+          {% endfor %}
+    </div>
+</div>
+
+{% endblock maincontent %}
